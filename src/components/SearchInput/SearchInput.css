@@ -1,0 +1,47 @@
+
+.InputWrapper {
+  background-color: #fff;
+  padding: 10px 15px;
+  border: solid 1px #e2e2e2;
+  margin-top: 1.5em;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.TextInput {
+  border: none;
+  width: 100%;
+  outline: none;
+  font-size: 16px;
+  text-transform: uppercase;
+  color: #2a2a2a;
+  font-weight: 700;
+}
+
+.TextInput::placeholder {
+  text-transform: none;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 18px;
+  color: #9e9c9c;
+}
+
+.Button {
+  border: none;
+  background-color: transparent;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: #999;
+  text-align: right;
+  cursor: pointer;
+  outline: none;
+  transition: all .3s;
+  position: relative;
+  top: 2px;
+}
+
+.Button:hover {
+  color: #000;
+}

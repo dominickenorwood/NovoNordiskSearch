@@ -1,0 +1,57 @@
+.Module {
+  margin: 0 auto 20px;
+  font-family: 'Lato', sans-serif;
+  font-weight: 400;
+  line-height: 1.7;
+  box-sizing: border-box;
+}
+
+.Module *,
+.Module *::after,
+.Module *::before {
+  /*margin: 0;
+  padding: 0;*/
+  box-sizing: inherit;
+  font-family: 'Lato','Arial', sans-serif !important;
+}
+
+.Search {
+  padding: 25px;
+  background-color: #f0f0f0;
+}
+
+.SearchHeading {
+  font-size: 14px;
+  font-weight: 900;
+  padding: 0;
+  margin: 0;
+}
+
+.SearchBlurb {
+  font-size: 13px;
+  color: #5b5b5b;
+  font-style: italic;
+  margin-top: 5px;
+}
+
+.Cards {
+
+}
+
+.Monographs {
+
+}
+
+.Alert {
+  margin-top: 10px;
+  padding: 20px;
+  text-align: center;
+  font-size: 18px;
+  border-left: solid 7px #feb009;
+  background-color: #f7eacf;
+  display: none;
+}
+
+.Visible {
+  display: block;
+}

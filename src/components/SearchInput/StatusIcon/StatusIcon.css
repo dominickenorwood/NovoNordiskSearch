@@ -1,0 +1,71 @@
+
+.Icon {
+  display: block;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: #d6d4d4;
+  position: relative;
+  right: -5px;
+}
+
+.Icon::after,
+.Icon::before {
+  content: '';
+  position: absolute;
+  display: block;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  animation-name: burst;
+  animation-duration: 1s;
+  animation-timing-function: ease-out;
+  animation-iteration-count: infinite;
+  border-radius: 50%;
+  background-color: #d6d4d4;
+}
+
+.Icon::after {
+  z-index: 1;
+}
+
+.Icon::before {
+  z-index: 2;
+}
+
+.Idle,
+.Idle::after,
+.Idle::before {
+  background-color: #f0f0f0;
+}
+
+.Searching,
+.Searching::after,
+.Searching::before {
+  background-color: #feb009;
+}
+
+.Success,
+.Success::after,
+.Success::before {
+  background-color: #5cc670;
+}
+
+.Error,
+.Error::after,
+.Error::before {
+  background-color: #e00b0b;
+}
+
+@keyframes burst {
+  0%{
+    opacity: 1;
+    transform: scale(0);
+  }
+
+  100% {
+    opacity: 0;
+    transform: scale(2);
+  }
+}

@@ -1,0 +1,51 @@
+
+.CardList {
+  margin: 0 0 0 18px;
+  padding: 0;
+}
+
+.CardList:not(:first-child) {
+  margin-top: 15px;
+}
+
+.CardListHeading {
+  color: #005093;
+  font-size: 14px;
+  font-weight: 400;
+  transition: all .3s;
+  cursor: pointer;
+  list-style: disc;
+}
+
+.CardListHeading:hover {
+  color: #c02f56;
+}
+
+.CardListHeading em{
+  font-weight: bold;
+  font-style: normal;
+}
+
+.CardInnerList {
+  margin: 0 0 0 18px;
+  padding: 0;
+}
+
+.CardInnerListItem {
+  margin-top: 5px;
+  font-size: 12px;
+  color: #504f4f;
+  list-style: circle;
+}
+
+.CardInnerListItem em {
+  font-style: normal;
+  color: #005093;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all .3s;
+}
+
+.CardInnerListItem em:hover {
+  color: #c02f56;
+}

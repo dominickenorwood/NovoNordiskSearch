@@ -1,0 +1,150 @@
+
+.Accordian {
+
+}
+
+.Header {
+  border-top: solid 1px #e1eaef;
+  padding-top: 10px;
+  margin-top: 10px;
+  font-size: 16px;
+  color: #005093;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all .3s;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.Header:hover {
+  color: #c02f56;
+}
+
+.Header h2,
+.Header b,
+.Header p {
+  font-size: inherit;
+  font-weight: inherit;
+  color: inherit;
+  padding: 0;
+  margin: 0;
+}
+
+.Header * {
+  font-size: inherit !important;
+  font-weight: inherit !important;
+}
+
+.HeadingWrap {
+  display: block;
+  width: 100%;
+}
+
+.Body {
+  font-size: 14px;
+  padding: 5px 0;
+  display: none;
+}
+
+.Body ul,
+.Body ol,
+.Body * {
+  padding: 0;
+  margin: 0;
+  font-size: inherit !important;
+}
+
+.Body p {
+    padding: 5px 0;
+}
+
+.Body ul {
+    padding: 10px 0 0 18px;
+    list-style-type: disc;
+}
+
+.Body li {
+    list-style-type: disc;
+    margin-bottom: 15px;
+}
+
+.Body ul ul {
+    padding-top: 0;
+    padding-bottom: 10px;
+    margin-top: -10px;
+}
+
+.Body img {
+    max-width: 100%;
+}
+
+.Body .figure {
+    padding: 5px 0;
+    text-align: center;
+    font-size: 9px;
+}
+
+.Body .table {
+    margin: 20px 0;
+    color: #727272;
+}
+
+.Body table {
+    width: 100%;
+    overflow: auto;
+    background-color: #fff;
+    border: solid 1px #1d4965;
+    margin: 10px 0;
+    display: block;
+    cursor: pointer;
+}
+
+.Body td,
+.Body th {
+    padding: 10px 15px;
+}
+
+.Body table p {
+    padding: 0;
+    color: #727272;
+    font-size: 12px;
+}
+
+.Body table b {
+    color: #000;
+}
+
+.Body tbody tr:not(:last-child) {
+    border-bottom: solid 1px #e8eef7;
+}
+
+.Body tbody > tr:first-child {
+    border-bottom: solid 2px #9ab9df;
+}
+
+.Body tbody > tr:first-child td {
+    padding: 15px;
+}
+
+.Body td {
+    border-right: solid 1px #e8eef7;
+    border-top: solid 1px #e8eef7;
+}
+
+.Symbol {
+  width: 15px;
+  height: 15px;
+  display: none;
+  fill: #005093;
+  transition: all .3s;
+}
+
+.Header:hover .Symbol {
+  fill: #c02f56;
+}
+
+.Visible {
+  display: block !important;
+}
