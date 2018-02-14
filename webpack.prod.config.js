@@ -1,10 +1,11 @@
 const path = require('path');
 const autoprefixer = require('autoprefixer');
+const postcssPrependSelector = require('postcss-selector-prepend');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const webpack = require('webpack');
 
 const VENDOR_LIBS = [
-  'react', 'react-dom'
+  'react', 'react-dom', 'react-transition-group', 'axios'
 ];
 
 module.exports = {

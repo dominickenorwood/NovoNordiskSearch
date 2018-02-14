@@ -55,3 +55,11 @@
 .Visible {
   display: block;
 }
+
+.Slug {
+  height: 100px;
+  width: 100px;
+  background-color: red;
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+}

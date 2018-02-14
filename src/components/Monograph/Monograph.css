@@ -5,6 +5,10 @@
   margin-top: 20px;
 }
 
+.Monograph em{
+  background-color: #edf095;
+}
+
 .Header {
   padding: 25px 25px 0;
   position: relative;

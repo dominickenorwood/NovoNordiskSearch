@@ -6,6 +6,7 @@
 .Header {
   border-top: solid 1px #e1eaef;
   padding-top: 10px;
+  padding-left: 20px;
   margin-top: 10px;
   font-size: 16px;
   color: #005093;
@@ -42,10 +43,15 @@
   width: 100%;
 }
 
+.Header.Current {
+    color: #c02f56;
+}
+
 .Body {
   font-size: 14px;
-  padding: 5px 0;
-  display: none;
+  overflow: hidden;
+  height: 0;
+  transition: all .5s ease-out;
 }
 
 .Body ul,
@@ -133,18 +139,47 @@
     border-top: solid 1px #e8eef7;
 }
 
+.BodyWrapper {
+    padding: 5px 0 5px 20px;
+}
+
+.Icons {
+    width: 15px;
+    height: 15px;
+    position: relative;
+}
+
 .Symbol {
   width: 15px;
   height: 15px;
-  display: none;
+  position: absolute;
+  left: 0;
+  top: 0;
+  /* display: none; */
   fill: #005093;
   transition: all .3s;
+  opacity: 0;
+  transform: rotate(0);
 }
 
-.Header:hover .Symbol {
+.Header:hover .Symbol,
+.Header.Current .Symbol{
   fill: #c02f56;
 }
 
 .Visible {
-  display: block !important;
+  opacity: 1 !important;
+  transform: rotate(180deg) !important;
 }
+
+.HeightAuto {
+    height: auto !important;
+}
+
+
+.BodyWrapper {
+    position: relative;
+}
+
+
+

@@ -23,7 +23,7 @@
 
 .CardListHeading em{
   font-weight: bold;
-  font-style: normal;
+  /* font-style: normal; */
 }
 
 .CardInnerList {
@@ -39,7 +39,7 @@
 }
 
 .CardInnerListItem em {
-  font-style: normal;
+  /* font-style: normal; */
   color: #005093;
   font-weight: bold;
   cursor: pointer;

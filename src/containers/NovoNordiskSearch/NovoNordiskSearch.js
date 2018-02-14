@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import Transition from 'react-transition-group/Transition';
 
 import Helpers from '../../hoc/Helpers';
 import SearchInput from '../../components/SearchInput/SearchInput';
@@ -7,6 +8,12 @@ import Card from '../../components/Card/Card';
 import Monograph from '../../components/Monograph/Monograph';
 
 import classes from './NovoNordiskSearch.css';
+
+const animationTiming = {
+  enter: 1000,
+  exit: 1000
+}
+
 
 class NovoNordiskSearch extends Component {
   constructor() {
@@ -18,7 +25,8 @@ class NovoNordiskSearch extends Component {
       searchValue: '',
       status: 'idle',
       alert: false,
-			headingId: null
+      headingId: null,
+      transitionResults: []
     }
 
     this.spacebar = false;
@@ -80,16 +88,17 @@ class NovoNordiskSearch extends Component {
   }
 
   searchAPI(value) {
-    console.log('SEARCH', encodeURI(value));
+    console.log('SEARCH', encodeURI(value.toLowerCase()));
     this.setState({ status : 'searching' });
     axios.get(this.props.searchUrl, {
       params: {
         drugId : this.props.searchId,
-        searchTerm : encodeURI(value)
+        searchTerm : encodeURI(value.toLowerCase())
       }
     })
     .then(response => {
       const _newResults = [ ...response.data.Results ];
+      const _newTransitionResults = [ ...this.state.results ]
 
       if(_newResults.length > 0) this.setState({ results : _newResults, monograph : null, status: 'success', alert: false });
       else this.setState({ results : [], monograph : null, status: 'searching', alert: true, headingId: null });
@@ -114,7 +123,7 @@ class NovoNordiskSearch extends Component {
     axios.get(this.props.monographUrl, {
       params: {
 				drugId: this.props.searchId,
-        searchTerm : encodeURI(this.state.searchValue),
+        searchTerm : encodeURI(this.state.searchValue.toLowerCase()),
 				fileId : id
       }
     })
@@ -168,6 +177,27 @@ class NovoNordiskSearch extends Component {
             inputChange={this.onInputChange}
             status={this.state.status}/>
         </div>
+        <Transition
+          in={this.state.results.length > 0}
+          timeout={animationTiming}
+          >
+          {
+            state => {
+              console.log('[Results Transition State] =>', state);
+              let _styles = null;
+              if(state === 'entering' || state === 'entered'){
+                _styles = { opacity : 1 };
+              };
+              console.log('STYLES FOR RESULTS', _styles)
+              return (
+                <div className={classes.Slug} style={_styles}>
+                  Test Slug
+                </div>
+              )
+            }
+          }
+          
+        </Transition>
         <div className={classes.Cards}>
           { _cards }
         </div>
@@ -176,7 +206,7 @@ class NovoNordiskSearch extends Component {
         </div>
         <div className={[classes.Alert, _open].join(' ')}>
           <span>No Results Found :(</span>
-        </div>
+        </div>        
       </div>
     );
   }

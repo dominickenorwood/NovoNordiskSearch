@@ -1,5 +1,6 @@
 import React from 'react';
 
+import Helpers from '../../hoc/Helpers';
 import Accordian from './Accordian/Accordian';
 import classes from './Monograph.css';
 
@@ -18,7 +19,7 @@ const monograph = props => {
   return (
     <div className={classes.Monograph}>
       <header className={classes.Header}>
-        <h3 className={classes.Heading}>{props.title}</h3>
+        <h3 className={classes.Heading} dangerouslySetInnerHTML={Helpers.createMarkup(props.title)}></h3>
         <div className={classes.HeadingTag}>Powered by Novo Nordisk Medical Affairs</div>
       </header>
       <div className={classes.Accordians}>
