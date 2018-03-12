@@ -38,10 +38,9 @@
   cursor: pointer;
   outline: none;
   transition: all .3s;
-  position: relative;
-  top: 2px;
 }
 
 .Button:hover {
   color: #000;
 }
+

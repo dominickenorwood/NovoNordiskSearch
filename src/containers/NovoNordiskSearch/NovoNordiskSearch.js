@@ -6,6 +6,7 @@ import Helpers from '../../hoc/Helpers';
 import SearchInput from '../../components/SearchInput/SearchInput';
 import Card from '../../components/Card/Card';
 import Monograph from '../../components/Monograph/Monograph';
+import PDFIcon from '../../svg/PDFIcon';
 
 import classes from './NovoNordiskSearch.css';
 
@@ -22,11 +23,12 @@ class NovoNordiskSearch extends Component {
     this.state = {
       results: [],
       monograph: null,
-      searchValue: '',
+      searchValue: decodeURI(this.getURLParam('searchTerm')),
       status: 'idle',
       alert: false,
       headingId: null,
-      transitionResults: []
+      transitionResults: [],
+      piInfo: null
     }
 
     this.spacebar = false;
@@ -36,13 +38,24 @@ class NovoNordiskSearch extends Component {
     this.searchForMonograph = this.searchForMonograph.bind(this);
     this.getPremiumMonograph = this.getPremiumMonograph.bind(this);
     this.isEmphasised = this.isEmphasised.bind(this);
-		this.resetHeadingId = this.resetHeadingId.bind(this);
+    this.resetHeadingId = this.resetHeadingId.bind(this);
+    this.getURLParam = this.getURLParam.bind(this);
 
     this.debounceSearch = Helpers.debounce(this.debounceSearch, 500);
   }
 
   toggleAlert() {
     this.state.alert ? this.setState({ alert : false }) : this.setState({ alert : true });
+  }
+
+  getURLParam(param){
+    const _url = window.location.search.substring(1);
+    const _variables = _url.split('&');
+    for(let index of _variables){
+      const _param = index.split('=');
+      if(_param[0] === param) return _param[1];
+    }
+    return '';
   }
 
   onInputChange(str) {
@@ -88,6 +101,12 @@ class NovoNordiskSearch extends Component {
   }
 
   searchAPI(value) {
+    window.dataLayer && window.dataLayer.push({
+      'event': 'premium-monograph-drug',
+      'search-term': value,
+      'event-type': 'search'
+    });
+
     console.log('SEARCH', encodeURI(value.toLowerCase()));
     this.setState({ status : 'searching' });
     axios.get(this.props.searchUrl, {
@@ -98,15 +117,17 @@ class NovoNordiskSearch extends Component {
     })
     .then(response => {
       const _newResults = [ ...response.data.Results ];
-      const _newTransitionResults = [ ...this.state.results ]
+      const _newTransitionResults = [ ...this.state.results ];
+      const _prescribingInformation = (response.data.PrescribingInformationLink) ? [ response.data.PrescribingInformationLink ] : null;
 
-      if(_newResults.length > 0) this.setState({ results : _newResults, monograph : null, status: 'success', alert: false });
-      else this.setState({ results : [], monograph : null, status: 'searching', alert: true, headingId: null });
+      if(_newResults.length > 0) this.setState({ results : _newResults, monograph : null, status: 'success', alert: false, piInfo: _prescribingInformation });
+      else this.setState({ results : [], monograph : null, status: 'searching', alert: true, headingId: null, piInfo: null});
 
       console.log(`[Got response from ${this.props.searchUrl} for drugId ${this.props.searchId} and searchTerm "${value}".]`, response);
+      console.log('[PI Info]', _prescribingInformation);
     })
     .catch(error => {
-      this.setState({ results : [], monograph : null, status : 'error', alert: true, headingId: null });
+      this.setState({ results : [], monograph : null, status : 'error', alert: true, headingId: null, piInfo: null });
       console.log(`[Error getting response from ${this.props.searchUrl}]`, error);
     });
   }
@@ -117,7 +138,15 @@ class NovoNordiskSearch extends Component {
     }
   }
 
-  getPremiumMonograph(id, headingId) {
+  getPremiumMonograph(id, headingId, headingTitle, subHeadingTitle) {
+    window.dataLayer && window.dataLayer.push({
+      'event': 'premium-monograph-drug',
+      'file-id': id,
+      'heading-title': headingTitle,
+      'sub-heading-title': subHeadingTitle,
+      'event-type': 'click-header'
+    });
+
     this.setState({ status : 'searching' });
 		if(headingId) this.setState({ headingId });
     axios.get(this.props.monographUrl, {
@@ -140,6 +169,10 @@ class NovoNordiskSearch extends Component {
     })
   }
 
+  componentDidMount(){
+    if(this.state.searchValue.length > 0) this.searchAPI(this.state.searchValue.toLowerCase());
+  }
+
   render() {
     const _cards = this.state.results.map(card => {
       return (
@@ -149,7 +182,7 @@ class NovoNordiskSearch extends Component {
           fileid={card.FileId}
           list={card.Headings}
           getMonograph={this.getPremiumMonograph}
-          emphasisedClicked={this.isEmphasised} />
+          emphasisedClicked={this.isEmphasised}/>
       )
     });
 
@@ -159,17 +192,33 @@ class NovoNordiskSearch extends Component {
                     title={this.state.monograph[0].Title}
                     headings={this.state.monograph[0].Headings}
                     fileid={this.state.monograph[0].FileId}
+                    disclaimer={this.state.monograph[0].Disclaimer}
 										stateHeadingId={this.state.headingId}
 										resetHeadingId={this.resetHeadingId} />;
     };
 
     const _open = this.state.alert ? classes.Visible : null;
+    
+    let _piInfo = null;
+    if(this.state.piInfo){
+      _piInfo = (
+        <div className={classes.PIinfo}>
+          <div>
+            <PDFIcon symbolClass={classes.Icon} />
+          </div>
+          <div>
+            <div className={classes.PItitle}>{this.state.piInfo[0].DrugName} <span className={classes.PItitleAlt}>({this.state.piInfo[0].AlternateDrugName})</span></div>
+            <div className={classes.DownloadTxt}>Download Pdf</div>
+          </div>
+        </div>
+      )
+    }
 
     return(
       <div className={classes.Module}>
         <div className={classes.Search}>
           <h5 className={classes.SearchHeading}>Search Premium Monographs</h5>
-          <p className={classes.SearchBlurb}>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est.</p>
+          <p className={classes.SearchBlurb}>Have a product inquiry? Access comprehensive and accurate pharmaceutical Medical Information</p>
           <SearchInput
             search={this.searchForMonograph}
             reset={this.resetState}
@@ -177,27 +226,7 @@ class NovoNordiskSearch extends Component {
             inputChange={this.onInputChange}
             status={this.state.status}/>
         </div>
-        <Transition
-          in={this.state.results.length > 0}
-          timeout={animationTiming}
-          >
-          {
-            state => {
-              console.log('[Results Transition State] =>', state);
-              let _styles = null;
-              if(state === 'entering' || state === 'entered'){
-                _styles = { opacity : 1 };
-              };
-              console.log('STYLES FOR RESULTS', _styles)
-              return (
-                <div className={classes.Slug} style={_styles}>
-                  Test Slug
-                </div>
-              )
-            }
-          }
-          
-        </Transition>
+        { _piInfo }
         <div className={classes.Cards}>
           { _cards }
         </div>

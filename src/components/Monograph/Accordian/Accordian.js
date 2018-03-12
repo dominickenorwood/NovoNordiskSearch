@@ -34,21 +34,13 @@ class Accordian extends Component {
     }
   }
 
-  componentWillMount() {
-    console.log('[Accordian] Will Mount');
-    if(this.doIdsMatch){
-      
-    }
-  }
-
   componentDidMount() {
-    console.log(`[Accordian] Did Mount`);
     if(this.doIdsMatch) {
       this.setState({ open : true})
       const _accordian = document.getElementById(`novo-search-accordian-${this.props.accordianId}`);
 
-      console.log(`Scroll to accordian => ${this.props.accordianId}`);
-      console.log(_accordian.offsetTop);
+      // console.log(`Scroll to accordian => ${this.props.accordianId}`);
+      // console.log(_accordian.offsetTop);
 
       window.scrollTo(0, _accordian.offsetTop)
     }
@@ -66,7 +58,7 @@ class Accordian extends Component {
   }
 
   get doIdsMatch() {
-    return this.props.accordianId === this.props.stateAccordianId
+    return this.props.accordianId === this.props.stateAccordianId;
   }
 
   render() {
@@ -86,7 +78,6 @@ class Accordian extends Component {
         <Transition
           in={this.state.open}
           timeout={animationTiming}
-          onExited={() => console.log('EXITED BRO',this)}
           ref="accordianTransition">
           {
             state => {
@@ -94,7 +85,6 @@ class Accordian extends Component {
               let _classes = null;
 
               if(state === 'entering' || state === 'entered' || state === 'exiting'){
-                console.log('EXPAND accordian to ', this.accordianHeight)
                 _styles = { height : `${this.accordianHeight}px`}
               }
 

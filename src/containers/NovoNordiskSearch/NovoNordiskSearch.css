@@ -56,10 +56,49 @@
   display: block;
 }
 
-.Slug {
-  height: 100px;
-  width: 100px;
-  background-color: red;
-  opacity: 0;
-  transition: opacity 1s ease-in-out;
+
+.Icon {
+  width: 40px;
+  fill: #c02f57;
+}
+
+.PIinfo {
+  padding: 10px 20px;
+  border: solid 1px #e5cb4e;
+  border-top: none;
+  display: inline-block;
+  cursor: pointer;
+}
+
+.PIinfo > div{
+  display: inline-block;
+  vertical-align: top;
+}
+
+.PIinfo > div:first-child{
+  margin-right: 10px;
+}
+
+.PItitle {
+  text-transform: uppercase;
+  color: #005093;
+  font-family: 'Lato';
+  font-weight: 700;
+  font-size: 17px;
+}
+
+.PItitleAlt {
+  font-size: 14px;
+  text-transform: none;
+  font-weight: 500;
+  color: #989898;
+}
+
+.DownloadTxt{
+  text-transform: uppercase;
+  color: #c1c1c1;
+  font-size: 13px;
+  line-height: 13px;
+  font-style: italic;
+  margin-top: 3px;
 }

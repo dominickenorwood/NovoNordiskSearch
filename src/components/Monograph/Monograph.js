@@ -22,6 +22,7 @@ const monograph = props => {
         <h3 className={classes.Heading} dangerouslySetInnerHTML={Helpers.createMarkup(props.title)}></h3>
         <div className={classes.HeadingTag}>Powered by Novo Nordisk Medical Affairs</div>
       </header>
+      {props.disclaimer ? <div className={classes.Disclaimer}><div className={classes.DisclaimerWrapper} dangerouslySetInnerHTML={Helpers.createMarkup(props.disclaimer)}></div></div> : null}
       <div className={classes.Accordians}>
         { _accordians }
       </div>

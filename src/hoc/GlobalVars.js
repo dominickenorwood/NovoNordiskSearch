@@ -1,6 +1,7 @@
-/*const NOVO_NORDISK_SEARCH_URL = 'http://localhost/cda/drug/searchpremiumcontent?drugId=';*/
-const NOVO_NORDISK_SEARCH_URL = 'http://localhost/cda/drug/searchpremiumcontent';
-const NOVO_NORDISK_MONOGRAPH_URL = 'http://localhost/cda/hminobot/drug/getpremiumcontentfile'
+/* const NOVO_NORDISK_SEARCH_URL = 'http://localhost/cda/drug/searchpremiumcontent';
+const NOVO_NORDISK_MONOGRAPH_URL = 'http://localhost/cda/hminobot/drug/getpremiumcontentfile' */
+const NOVO_NORDISK_SEARCH_URL = 'public/results.json';
+const NOVO_NORDISK_MONOGRAPH_URL = 'public/monograph.json'
 const NOVO_NORDISK_DRUGID = '34438';
 
 const getGlobalUrl = () => {

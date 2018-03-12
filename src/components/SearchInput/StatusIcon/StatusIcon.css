@@ -1,4 +1,65 @@
+.StatusIcon {
+  width: 30px;
+  height: 30px;
+}
 
+.Icon,
+.Icon:after {
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+}
+.Icon {
+  margin: 0 auto;
+  font-size: 5px;
+  position: relative;
+  text-indent: -9999em;
+  -webkit-transform: translateZ(0);
+  -ms-transform: translateZ(0);
+  transform: translateZ(0);
+  border: 1.1em solid #f0f0f0;
+}
+
+.Searching{
+  border-top: 1.1em solid rgba(192,47,86, 0.2);
+  border-right: 1.1em solid rgba(192,47,86, 0.2);
+  border-bottom: 1.1em solid rgba(192,47,86, 0.2);
+  border-left: 1.1em solid #c02f56;
+  -webkit-animation: load8 1.1s infinite linear;
+  animation: load8 1.1s infinite linear;
+}
+
+.Success {
+  border-color: #5cc670;
+}
+
+.Error {
+  border-color: #e00b0b;
+}
+
+
+@-webkit-keyframes load8 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+@keyframes load8 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+
+/* 
 .Icon {
   display: block;
   width: 20px;
@@ -68,4 +129,4 @@
     opacity: 0;
     transform: scale(2);
   }
-}
+} */

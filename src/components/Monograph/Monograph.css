@@ -5,10 +5,6 @@
   margin-top: 20px;
 }
 
-.Monograph em{
-  background-color: #edf095;
-}
-
 .Header {
   padding: 25px 25px 0;
   position: relative;
@@ -30,4 +26,30 @@
 
 .Accordians {
   padding: 0 25px 25px;
+}
+
+.Disclaimer {
+  background-color: #fff;
+  padding: 10px;
+  margin: 20px 0 25px;
+  font-size: 12px;
+  color: #565656;
+  font-style: italic;
+}
+
+.Disclaimer b{
+  font-weight: normal;
+}
+
+.Disclaimer p{
+  padding: 0;
+  margin: 0;
+}
+
+.DisclaimerWrapper {
+  width: 75%;
+  margin: 0 auto;
+  padding: 10px 20px;
+  border: 1px solid #e2c53b;
+  border-radius: 3px;
 }

@@ -6,7 +6,7 @@
   "scripts": {
     "clean": "rimraf dist",
     "start": "webpack-dev-server",
-    "build": "webpack --config webpack.prod.config.js --progress --profile --color"
+    "build": "rimraf dist && webpack --config webpack.prod.config.js --progress --profile --color"
   },
   "author": "",
   "license": "ISC",
@@ -20,6 +20,7 @@
     "html-webpack-plugin": "^2.30.1",
     "postcss-loader": "^2.1.0",
     "postcss-selector-prepend": "^0.5.0",
+    "rimraf": "^2.6.2",
     "style-loader": "^0.20.1",
     "webpack": "^3.10.0",
     "webpack-dev-server": "^2.11.1"

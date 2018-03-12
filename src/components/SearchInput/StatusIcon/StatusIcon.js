@@ -22,7 +22,9 @@ const statusIcon = props => {
     }
   }
   return (
-    <div className={[classes.Icon, _status()].join(' ')}></div>
+    <div className={classes.StatusIcon}>  
+      <div className={[classes.Icon, _status()].join(' ')}></div>
+    </div>
   )
 };
 

@@ -8,13 +8,11 @@
 .CardHeader {
   background-color: #f6fbfe;
   padding: 25px;
-  cursor: pointer;
-  transition: all .3s;
   position: relative;
-}
 
-.CardHeader:hover {
-  background-color: #c02f56;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .CardHeading {
@@ -23,6 +21,11 @@
   transition: all .3s;
   padding: 0;
   margin: 0;
+  cursor: pointer;
+}
+
+.CardHeading:hover {
+  color: #c02f56;
 }
 
 .CardHeadingTag {
@@ -33,18 +36,31 @@
   transition: all .3s;
 }
 
-.CardHeader:hover .CardHeading,
-.CardHeader:hover .CardHeadingTag{
-  color: #fff;
+.CardBody {
+  overflow: hidden;
+  height: 0;
+  transition: all .5s ease-out;
 }
 
-.CardBody {
+.CardBodyWrapper {
   padding: 25px;
 }
 
-.drugid {
-  position: absolute;
-  top: 10px;
-  right: 20px;
-  display:none;
+.Icon{
+  cursor: pointer;
+}
+
+.Symbol {
+  width: 28px;
+  height: 28px;
+  fill: #005093;
+  transition: all .3s;
+}
+
+.Icon:hover .Symbol {
+  fill: #c02f56;
+}
+
+.HeightAuto {
+  height: auto !important;
 }
